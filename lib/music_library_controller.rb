@@ -1,10 +1,10 @@
 class MusicLibraryController
 
-   def initialize(path = "./db/mp3s")
+  def initialize(path = "./db/mp3s")
     MusicImporter.new(path).import
   end 
 
-   def call 
+  def call 
     input = ''
 
      while input != 'exit'
@@ -22,7 +22,7 @@ class MusicLibraryController
 
      case input 
 
-     when 'list songs'
+    when 'list songs'
       list_songs
     when 'list artists'
       list_artists
@@ -34,37 +34,37 @@ class MusicLibraryController
       list_songs_by_genre
     when 'play song'
       play_song
-    end 
-   end 
+       end 
+     end 
   end 
 
-   def list_songs
+  def list_songs
     Song.all.sort_by(&:name).each.with_index(1) do |song, idx|
       puts "#{idx}. #{song.artist.name} - #{song.name} - #{song.genre.name}"
     end 
   end 
 
-   def list_artists
+  def list_artists
     Artist.all.sort_by(&:name).each.with_index(1) do |artist, idx|
       puts "#{idx}. #{artist.name}"
     end
   end 
 
-   def list_genres
+  def list_genres
     Genre.all.sort_by(&:name).each.with_index(1) do |genre, idx|
       puts "#{idx}. #{genre.name}"
     end
   end 
 
-   def list_songs_by_artist
+  def list_songs_by_artist
     puts "Please enter the name of an artist:"
     input = gets.strip
 
      if artist = Artist.find_by_name(input)
       artist.songs.sort_by(&:name).each.with_index(1) do |song, idx|
         puts "#{idx}. #{song.name} - #{song.genre.name}"
-      end 
-    end 
+        end 
+     end 
   end 
 
   def list_songs_by_genre
