@@ -1,4 +1,3 @@
-require './lib/concerns/findable'
 class Artist
  
   attr_accessor :name
