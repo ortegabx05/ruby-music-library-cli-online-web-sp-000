@@ -1,4 +1,4 @@
-require_relative '../config/environment.rb'
+require './lib/concerns/findable'
 class Artist
  
   attr_accessor :name
